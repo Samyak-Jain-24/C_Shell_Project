@@ -12,6 +12,18 @@
 #include<fcntl.h>        // EDIT: Added for the open() function
 
 /* =========================================================================
+ * BASIC SYSTEM CALL IMPLEMENTATION
+ * =========================================================================
+ * This file contains the implementation of the core shell execution
+ * operations. It serves as the primary dispatcher for natively executing
+ * external commands (e.g., binaries located in /usr/bin or /bin).
+ *
+ * It bridges the parser's output with standard UNIX process creation
+ * paradigms, taking care of process forking (fork) and image replacement
+ * (exec). It integrates deeply with job control to properly track statuses.
+ * ========================================================================= */
+
+/* =========================================================================
  * GLOBALS
  * =========================================================================
  * The following global definitions are used to keep track of the foreground
