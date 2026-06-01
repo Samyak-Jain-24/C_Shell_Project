@@ -12,21 +12,37 @@
 #include "reveal.h"
 #include "hopping.h"
 
+/**
+ * cmpfunc: Helper utility function used for generic qsort operations.
+ * Casts the void pointers to string arrays and does a standard lexicographical
+ * strcmp comparison to efficiently sort the file structures visually. 
+ */
 int cmpfunc(const void *a, const void *b)
 {
+    // Evaluates string equality sorting weight natively
     return strcmp(*(const char **)a, *(const char **)b);
 }
 
+/**
+ * reveal: Specialized replacement for standard 'ls'.
+ * Processes -a (hidden), -l (long format) combinations mapping paths relative 
+ * to execution node variables. Sorts items alphabetically before stdout dump.
+ */
 void reveal(char *currpath, char *args, char *root)
 {
+    // Evaluation switches for formatting layout modifiers
     int show_hidden = 0;
     int line_format = 0;
+    
     char path[256];
-    strcpy(path, currpath); // default to current path
+    
+    // Explicit baseline assumes execution against CWD
+    strcpy(path, currpath);
+    
     int too_many_args = 0;
     int path_count = 0;
 
-    // Parse args
+    // Evaluate arguments for override paths mapping and flag modifiers
     if (args != NULL)
     {
         char args_copy[256];
