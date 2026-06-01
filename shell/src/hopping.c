@@ -10,14 +10,29 @@
 #include<sys/wait.h>
 #include "hopping.h"
 
+/* 
+ * =========================================================================
+ * NAVIGATION STATE GLOBALS
+ * =========================================================================
+ * These variables track the previous directory path (for implementing `cd -`)
+ * and the original shell home path (for implementing `cd ~` or `cd` with
+ * no arguments). Initialized globally across hopping operations.
+ * =========================================================================
+ */
 static char prev_cwd[256];
 static char shell_home[256];
 static bool prev_set = false;
 static bool home_set = false;
 
+/**
+ * hopping: Shell navigation utility mapping to 'cd'.
+ * Handles complex navigation paths including home (~) relative, previous (-),
+ * absolute, and relative paths. Always updates the state for successive hops.
+ */
 void hopping(char *currpath, char *args) {
 
-    // Set shell home on first call
+    // Initialize the root execution context directory (shell home)
+    // Runs exclusively on the very first invocation of directory hop.
     if (!home_set) {
         getcwd(shell_home, sizeof(shell_home));
         home_set = true;
