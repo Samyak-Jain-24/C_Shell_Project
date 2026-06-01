@@ -15,6 +15,17 @@
 #include "job_control.h"
 #include "ping.h"
 
+/**
+ * @brief process_single_command
+ * 
+ * This function processes a single command line string, tokenizes it, 
+ * identifies if it should be run in the background, and handles 
+ * the proper routing of execution based on the parsed tokens.
+ * 
+ * @param command_str The string containing the raw command.
+ * @param currpath    The current working directory.
+ * @param homepath    The user's home directory.
+ */
 void process_single_command(char* command_str, char* currpath, char* homepath) {
     // Trim leading/trailing whitespace
     char* end;

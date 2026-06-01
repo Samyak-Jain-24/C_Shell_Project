@@ -17,7 +17,16 @@
 #include "BasicSysCall.h"
 #include "reveal.h"
 
-// Definition of global variable
+/* 
+ * =========================================================================
+ * HISTORY MANAGEMENT
+ * -------------------------------------------------------------------------
+ * This module is responsible for loading, managing, and saving the command
+ * history across shell sessions. 
+ * =========================================================================
+ */
+
+// Definition of global variable for storing command history state
 CommandHistory history;
 
 void init_history() {
