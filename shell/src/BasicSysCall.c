@@ -11,6 +11,13 @@
 #include<sys/wait.h>
 #include<fcntl.h>        // EDIT: Added for the open() function
 
+/* =========================================================================
+ * GLOBALS
+ * =========================================================================
+ * The following global definitions are used to keep track of the foreground
+ * process state across different source files in the project.
+ * ========================================================================= */
+
 extern volatile pid_t foreground_pid;
 extern volatile char foreground_command_name[256];
 
