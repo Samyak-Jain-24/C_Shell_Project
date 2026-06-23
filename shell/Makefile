@@ -52,3 +52,5 @@ clean:
 	rm -f $(OBJECTS) $(TARGET)
 
 .PHONY: all clean
+
+# Documentation format update
